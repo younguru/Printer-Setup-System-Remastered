@@ -7,6 +7,7 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <c:set var="SuccessInstallSystem" value='${requestScope["SuccessInstallSystem"]}'/>
 <c:set var="ErrorInstallSystem" value='${requestScope["ErrorInstallSystem"]}'/>
+<%@include file="Translater.jsp"%>
 <!doctype html>
 <html>
 	<head>
@@ -29,34 +30,34 @@
 		<div class="card ml-4 mr-4 mt-3 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle">Installation</span>
+					<span class="align-middle">${Installation}</span>
 				</div>
 			</div>
 			<div class="card-body p-0">
 				<c:if test = "${SuccessInstallSystem == true}">
-					<div class="alert alert-success m-4" role="alert">Success install system!</div>
+					<div class="alert alert-success m-4" role="alert">${Successinstallsystem}</div>
 				</c:if>
 				<c:if test = "${ErrorInstallSystem == true}">
-					<div class="alert alert-danger m-4" role="alert">Check your DB connection or username or password!<br>If everything is OK, then check config.properties file. First line must be configured like : <u>db.configured=no</u> and <u>printersetupsystem</u> database must be deleted</div>
+					<div class="alert alert-danger m-4" role="alert">${CheckyourDBconnectionorusernameorpassword}</div>
 				</c:if>
 				<form class="m-4" method="post" action="install">
 					<div class="form-group">
-						<label for="inputDBip" class="required">Database IP</label>
+						<label for="inputDBip" class="required">${DatabaseIP}</label>
 						<input name="installdbip" type="text" class="form-control" id="inputDBip" aria-describedby="inputDBipHelp" required>
-						<small id="inputDBipHelp" class="form-text text-muted">Input IP of the database</small>
+						<small id="inputDBipHelp" class="form-text text-muted">${InputIPofthedatabase}</small>
 					</div>
 					<div class="form-group">
-						<label for="inputDBuser" class="required">Database User</label>
+						<label for="inputDBuser" class="required">${DatabaseUser}</label>
 						<input name="installdbuser" type="text" class="form-control" id="inputDBuser" aria-describedby="inputDBuserHelp" required>
-						<small id="inputDBuserHelp" class="form-text text-muted">Input User of the database</small>
+						<small id="inputDBuserHelp" class="form-text text-muted">${InputUserofthedatabase}</small>
 					</div>
 					<div class="form-group">
-						<label for="inputDBpassword">Database Password</label>
+						<label for="inputDBpassword">${DatabasePassword}</label>
 						<input name="installdbpassword" type="text" class="form-control" id="inputDBip" aria-describedby="inputDBpasswordHelp">
-						<small id="inputDBpasswordHelp" class="form-text text-muted">Input Password of the database</small>
+						<small id="inputDBpasswordHelp" class="form-text text-muted">${InputPasswordofthedatabase}</small>
 					</div>
 					<br>
-					<button type="submit" name="button_installsystem" class="btn btn-primary btn-lg">Create</button>
+					<button type="submit" name="button_installsystem" class="btn btn-primary btn-lg">${Create}</button>
 				</form>
 			</div>
 		</div>

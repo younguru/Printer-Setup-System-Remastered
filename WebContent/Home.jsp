@@ -9,6 +9,7 @@
 <c:set var="ErrorBranchNotFound" value='${requestScope["ErrorBranchNotFound"]}'/>
 <c:set var="ErrorEmptyBranchID" value='${requestScope["ErrorEmptyBranchID"]}'/>
 <c:set var="ErrorBranchNotNumber" value='${requestScope["ErrorBranchNotNumber"]}'/>
+<%@include file="Translater.jsp"%>
 <!doctype html>
 <html>
 	<head>
@@ -30,24 +31,24 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> PrintDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item active">
-						<a class="nav-link" href="${context}/home">Home<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/home">${Home}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/search">Search<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/search">${Search}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/help">Help<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/help">${Help}<span class="sr-only">(current)</span></a>
 					</li>
 					<c:if test = "${isAdminEntered == true}">
 						<li class="nav-item">
-							<a class="nav-link" href="${context}/adminhome">Admin</a>
+							<a class="nav-link" href="${context}/adminhome">${Admin}</a>
 						</li>
 					</c:if>
 				</ul>
@@ -57,9 +58,9 @@
 				    <li class="nav-item dropdown">
 				        <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("fullname")%> </a>
 				        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-				        	<a class="dropdown-item" href="${context}/usersettings">Preferences</a>
+				        	<a class="dropdown-item" href="${context}/usersettings">${Preferences}</a>
 				        	<div class="dropdown-divider"></div>
-				        	<a class="dropdown-item" href="Logout.jsp">Logout</a>
+				        	<a class="dropdown-item" href="Logout.jsp">${Logout}</a>
 						</div>
 					</li>
 				</ul>
@@ -67,35 +68,35 @@
 		</nav>
 		<c:choose>
 			<c:when test = "${ErrorBranchNotFound == true}">
-				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">Branch not found!</div>
+				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">${Branchnotfound}</div>
 			</c:when>
 		</c:choose>
 		<c:choose>
 			<c:when test = "${ErrorEmptyBranchID == true}">
-				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">Empty branch ID. Please enter a valid branch id!</div>
+				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">${EmptybranchIDPleaseenteravalidbranchid}</div>
 			</c:when>
 		</c:choose>
 		<c:choose>
 			<c:when test = "${ErrorBranchNotNumber == true}">
-				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">Branch number must be entered!</div>
+				<div class="alert alert-danger ml-4 mr-4 mt-2 mb-4" role="alert">${Branchnumbermustbeentered}</div>
 			</c:when>
 		</c:choose>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb ml-4 mr-4 mt-3">
-				<li class="breadcrumb-item">Home</li>
+				<li class="breadcrumb-item">${Home}</li>
 			</ol>
 		</nav>
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">
-					<span class="align-middle">Branches</span>
+					<span class="align-middle">${Branches}</span>
 					<div class="border-left vertical-separator ml-4 mr-4"></div>
-					<span class="align-middle pr-2">Search:</span>
+					<span class="align-middle pr-2">${Search}:</span>
 					<div class="d-flex align-middle">
-						<input id="PSSBranchName" type="text" class="form-control" placeholder="Branch name" required="required">
+						<input id="PSSBranchName" type="text" class="form-control" placeholder="${Branchname}" required="required">
 						<div class="btn-group pl-2" role="group">
-							<button type="button" class="btn btn-outline-primary" onclick="BranchSearch('PSSBranchName', 'PSSResult')">Search</button>
-							<button type="button" class="btn btn-outline-primary" onclick="BranchReset('PSSResult')">Reset</button>
+							<button type="button" class="btn btn-outline-primary" onclick="BranchSearch('PSSBranchName', 'PSSResult')">${Search}</button>
+							<button type="button" class="btn btn-outline-primary" onclick="BranchReset('PSSResult')">${Reset}</button>
 						</div>
 					</div>
 				</div>
@@ -133,7 +134,7 @@
 							<div class="col mb-4">
 								<div class="card position-relative">
 									<div class="card-body">
-										<h5 class="card-title">(empty)</h5>
+										<h5 class="card-title">(${Empty})</h5>
 									</div>
 								</div>
 							</div>

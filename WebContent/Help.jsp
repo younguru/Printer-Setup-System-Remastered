@@ -5,6 +5,7 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<%@include file="Translater.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -25,24 +26,24 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> PrintDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/home">Home<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/home">${Home}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/search">Search<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/search">${Search}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="${context}/help">Help<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/help">${Help}<span class="sr-only">(current)</span></a>
 					</li>
 					<c:if test = "${isAdminEntered == true}">
 						<li class="nav-item">
-							<a class="nav-link" href="${context}/adminhome">Admin</a>
+							<a class="nav-link" href="${context}/adminhome">${Admin}</a>
 						</li>
 					</c:if>
 				</ul>
@@ -52,9 +53,9 @@
 				    <li class="nav-item dropdown">
 				        <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("fullname")%> </a>
 				        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-				        	<a class="dropdown-item" href="${context}/usersettings">Preferences</a>
+				        	<a class="dropdown-item" href="${context}/usersettings">${Preferences}</a>
 				        	<div class="dropdown-divider"></div>
-				        	<a class="dropdown-item" href="Logout.jsp">Logout</a>
+				        	<a class="dropdown-item" href="Logout.jsp">${Logout}</a>
 						</div>
 					</li>
 				</ul>
@@ -63,7 +64,7 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="align-items-center">
-					<span class="align-middle">Help</span>
+					<span class="align-middle">${Help}</span>
 					<c:if test = "${isAdminEntered == true}">
 						<div class="d-inline align-middle float-right">
 							<a href="${context}/adminmanualpage"><button type="button" class="btn btn-primary btn-sm"><span class="oi oi-pencil"></span></button></a>

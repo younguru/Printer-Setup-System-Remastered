@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <c:set var="ErrorPrinterNotFound" value='${requestScope["ErrorPrinterNotFound"]}'/>
+<%@include file="Translater.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -28,24 +29,24 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> PrintDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item active">
-						<a class="nav-link" href="${context}/home">Home<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/home">${Home}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/search">Search<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/search">${Search}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/help">Help<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/help">${Help}<span class="sr-only">(current)</span></a>
 					</li>
 					<c:if test = "${isAdminEntered == true}">
 						<li class="nav-item">
-							<a class="nav-link" href="${context}/adminhome">Admin</a>
+							<a class="nav-link" href="${context}/adminhome">${Admin}</a>
 						</li>
 					</c:if>
 				</ul>
@@ -55,9 +56,9 @@
 				    <li class="nav-item dropdown">
 				        <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("fullname")%> </a>
 				        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-				        	<a class="dropdown-item" href="${context}/usersettings">Preferences</a>
+				        	<a class="dropdown-item" href="${context}/usersettings">${Preferences}</a>
 				        	<div class="dropdown-divider"></div>
-				        	<a class="dropdown-item" href="Logout.jsp">Logout</a>
+				        	<a class="dropdown-item" href="Logout.jsp">${Logout}</a>
 						</div>
 					</li>
 				</ul>
@@ -65,7 +66,7 @@
 		</nav>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb ml-4 mr-4 mt-3">
-				<li class="breadcrumb-item"><a href="${context}/home">Home</a></li>
+				<li class="breadcrumb-item"><a href="${context}/home">${Home}</a></li>
 				<li class="breadcrumb-item"><a href="${context}/branch?id=${printer.GetBranchId()}">${printer.GetBranchName()}</a></li>
 				<li class="breadcrumb-item active" aria-current="page">${printer.GetName()}</li>
 			</ol>
@@ -73,7 +74,7 @@
 		<div class="card ml-4 mr-4 mt-2 mb-4">
 			<div class="card-header">
 				<div class="align-items-center">
-					<span class="align-middle" id="PSSPrinterId" data-info="${printer.GetId()}">Printer</span>
+					<span class="align-middle" id="PSSPrinterId" data-info="${printer.GetId()}">${Printer}</span>
 					<c:if test = "${isAdminEntered == true}">
 						<div class="d-inline align-middle float-right ml-2">
 							<a href="${context}/adminprintersedit?printerid=${printer.GetId()}"><button type="button" class="btn btn-primary btn-sm"><span class="oi oi-pencil"></span></button></a>
@@ -98,40 +99,40 @@
 						</c:choose>
 				    </div>
 				    <div class="col">
-						<h3>${printer.GetName()} <span class="badge badge-secondary">${printertype.GetType()}</span><span id="PSSOnlineBadge" class="badge badge-success hidden ml-2">Online</span></h3>
-						<h6 class="pt-3">Printer Description</h6>
+						<h3>${printer.GetName()} <span class="badge badge-secondary">${printertype.GetType()}</span><span id="PSSOnlineBadge" class="badge badge-success hidden ml-2">${Online}</span></h3>
+						<h6 class="pt-3">${PrinterDescription}</h6>
 						<p class="pt-2"><em>${printer.GetDescription()}</em></p>
-						<h6 class="pt-3">Printer Details</h6>
+						<h6 class="pt-3">${PrinterDetails}</h6>
 						<table class="table">
 							<tbody>
 								<tr>
-									<td>Location</td>
+									<td>${Location}</td>
 									<td><em>${printer.GetLocation()}</em></td>
 								</tr>
 								<tr>
-									<td>IP</td>
+									<td>${IP}</td>
 									<td><em><a href="http://${printer.GetIp()}" target="_blank">${printer.GetIp()}</a></em></td>
 								</tr>
 								<tr>
-									<td>Vendor</td>
+									<td>${Vendor}</td>
 									<td>${vendorlogo}<em>${printer.GetVendor()}</em></td>
 								</tr>
 								<tr>
-									<td>Created date</td>
+									<td>${Createddate}</td>
 									<td><em>${printer.GetCreatedDate()}</em></td>
 								</tr>
 								<tr>
-									<td>Server share name</td>
+									<td>${Serversharename}</td>
 									<td><em><a href="file:${printer.GetServerShareNameLink()}" target="_blank">${printer.GetServerShareName()}</a></em></td>
 								</tr>
 								<tr>
-									<td>Send printer link by email</td>
-									<td><em><a href="mailto:${printeremaillink}">Send email</a></em></td>
+									<td>${Sendprinterlinkbyemail}</td>
+									<td><em><a href="mailto:${printeremaillink}">${Sendemail}</a></em></td>
 								</tr>
 							</tbody>
 						</table>
-						<h6 class="pt-3 pb-2">Printer Installation</h6>
-						<a class="btn btn-primary" href="${context}/download?printerid=${printer.GetId()}" target="_blank">Install</a>
+						<h6 class="pt-3 pb-2">${PrinterInstallation}</h6>
+						<a class="btn btn-primary" href="${context}/download?printerid=${printer.GetId()}" target="_blank">${Install}</a>
 				    </div>
 				</div>
 			</div>

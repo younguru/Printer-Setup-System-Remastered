@@ -35,9 +35,9 @@ public class AdminInstallScriptController extends HttpServlet
     	AuthorizeUtil.AuthorizedRedirect(request, response);
     	
     	String installscript = AdminInstallScriptDao.GetInstallScript();
-    	request.setAttribute("installscript", installscript);
+    	request.setAttribute("installscriptp", installscript);
     	String scriptextension = AdminInstallScriptDao.GetScriptExtension();
-    	request.setAttribute("scriptextension", scriptextension);
+    	request.setAttribute("scriptextensionp", scriptextension);
     	
         RequestDispatcher rd = request.getRequestDispatcher("/AdminInstallScript.jsp"); 
         rd.include(request, response);
@@ -79,9 +79,9 @@ public class AdminInstallScriptController extends HttpServlet
         }
     	
     	String installscript = AdminInstallScriptDao.GetInstallScript();
-    	request.setAttribute("installscript", installscript);
+    	request.setAttribute("installscriptp", installscript);
     	String scriptextension = AdminInstallScriptDao.GetScriptExtension();
-    	request.setAttribute("scriptextension", scriptextension);
+    	request.setAttribute("scriptextensionp", scriptextension);
     	
         RequestDispatcher rd = request.getRequestDispatcher("/AdminInstallScript.jsp"); 
         rd.include(request, response);

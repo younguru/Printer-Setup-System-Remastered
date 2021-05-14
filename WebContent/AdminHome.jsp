@@ -7,6 +7,7 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
+<%@include file="Translater.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -28,24 +29,24 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> PrintDesk</a>
+			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/home">Home<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/home">${Home}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/search">Search<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/search">${Search}<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${context}/help">Help<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${context}/help">${Help}<span class="sr-only">(current)</span></a>
 					</li>
 					<c:if test = "${isAdminEntered == true}">
 						<li class="nav-item active">
-							<a class="nav-link" href="${context}/adminhome">Admin</a>
+							<a class="nav-link" href="${context}/adminhome">${Admin}</a>
 						</li>
 					</c:if>
 				</ul>
@@ -55,59 +56,59 @@
 				    <li class="nav-item dropdown">
 				        <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("fullname")%> </a>
 				        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-				        	<a class="dropdown-item" href="${context}/usersettings">Preferences</a>
+				        	<a class="dropdown-item" href="${context}/usersettings">${Preferences}</a>
 				        	<div class="dropdown-divider"></div>
-				        	<a class="dropdown-item" href="Logout.jsp">Logout</a>
+				        	<a class="dropdown-item" href="Logout.jsp">${Logout}</a>
 						</div>
 					</li>
 				</ul>
 			</c:if>
 		</nav>
 		<div class="m-3">
-			<h1 class="display-5 ml-4 mr-4 mt-2 mb-4">Details</h1>
+			<h1 class="display-5 ml-4 mr-4 mt-2 mb-4">${Details}</h1>
 			<div class="row ml-4 mr-4 mt-2 mb-4">
 	            <div class="thumbnails">
 				    <a class="thumbnail" href="${context}/adminprinters">
 				        <img class="thumbnail-image" src="img/admin/printers.png" alt="Printers" />
-				        <p class="caption mt-1">Printers</p>
+				        <p class="caption mt-1">${Printers}</p>
 				    </a>
 				    <a class="thumbnail" href="${context}/adminbranches">
 				        <img class="thumbnail-image" src="img/admin/branches.png" alt="Branches" />
-				        <p class="caption mt-1">Branches</p>
+				        <p class="caption mt-1">${Branches}</p>
 				    </a>
 				    <a class="thumbnail" href="${context}/adminadmins">
 				        <img class="thumbnail-image" src="img/admin/administrators.png" alt="Administrators" />
-				        <p class="caption mt-1">Administrators</p>
+				        <p class="caption mt-1">${Administrators}</p>
 				    </a>
 				</div>
 	        </div>
-	        <h1 class="display-5 ml-4 mr-4 mt-2 mb-4">Types</h1>
+	        <h1 class="display-5 ml-4 mr-4 mt-2 mb-4">${Types}</h1>
 			<div class="row ml-4 mr-4 mt-2 mb-4">
 	            <div class="thumbnails">
 				    <a class="thumbnail" href="${context}/adminprintertypes">
 				        <img class="thumbnail-image" src="img/admin/printertypes.png" alt="Printer types" />
-				        <p class="caption mt-1">Printer types</p>
+				        <p class="caption mt-1">${Printertypes}</p>
 				    </a>
 				</div>
 	        </div>
-	        <h1 class="display-5 ml-4 mr-4 mt-2 mb-4">System</h1>
+	        <h1 class="display-5 ml-4 mr-4 mt-2 mb-4">${System}</h1>
 			<div class="row ml-4 mr-4 mt-2 mb-4">
 	            <div class="thumbnails">
 				    <a class="thumbnail" href="${context}/adminmanualpage">
 				        <img class="thumbnail-image" src="img/admin/help.png" alt="Manual page settings" />
-				        <p class="caption mt-1">Manual page</p>
+				        <p class="caption mt-1">${Manualpage}</p>
 				    </a>
 				</div>
 				<div class="thumbnails">
 				    <a class="thumbnail" href="${context}/admininstallscript">
 				        <img class="thumbnail-image" src="img/admin/installscript.png" alt="Install Script settings" />
-				        <p class="caption mt-1">Install script</p>
+				        <p class="caption mt-1">${Installscript}</p>
 				    </a>
 				</div>
 				<div class="thumbnails">
 				    <a class="thumbnail" href="${context}/adminother">
 				        <img class="thumbnail-image" src="img/admin/other.png" alt="Other settings" />
-				        <p class="caption mt-1">Other settings</p>
+				        <p class="caption mt-1">${Othersettings}</p>
 				    </a>
 				</div>
 	        </div>

@@ -6,6 +6,7 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ErrorWrongLoginOrPassword" value='${requestScope["ErrorWrongLoginOrPassword"]}'/>
+<%@include file="Translater.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -25,16 +26,16 @@
 	<body class="text-center">
 		<form class="form-signin" method="post" action="login">
 			<img class="mb-4" src="img/logo.png" alt="" width="72" height="72">
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<h1 class="h3 mb-3 font-weight-normal">${Pleasesignin}</h1>
 			<label for="inputLogin" class="sr-only">Login</label>
-			<input name="login" type="text" id="inputLogin" class="form-control" placeholder="Login" required="required" autofocus="autofocus">
+			<input name="login" type="text" id="inputLogin" class="form-control" placeholder="${Login}" required="required" autofocus="autofocus">
 			<label for="inputPassword" class="sr-only">Password</label>
-			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-			<button name="login_button" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			<input name="password" type="password" id="inputPassword" class="form-control" placeholder="${Password}" required="required">
+			<button name="login_button" class="btn btn-lg btn-primary btn-block" type="submit">${Signin}</button>
 			<c:if test = "${ErrorWrongLoginOrPassword == true}">
-				<div class="alert alert-danger mt-2" role="alert">Login or Password is incorrect!</div>
+				<div class="alert alert-danger mt-2" role="alert">${LoPii}</div>
 			</c:if>
-			<p class="mt-5 mb-3 text-muted">© 2020</p>
+			<p class="mt-5 mb-3 text-muted">© 2021</p>
 		</form>
 	</body>
 </html>
