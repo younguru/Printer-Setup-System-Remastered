@@ -1,4 +1,6 @@
+/.github/
 /.idea/
-/build/
+/classes/
 /.settings/
-
+/build/
+/pssr/

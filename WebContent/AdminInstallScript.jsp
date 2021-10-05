@@ -10,7 +10,9 @@
 <c:set var="InstallScriptSaveError" value='${requestScope["InstallScriptSaveError"]}'/>
 <c:set var="ScriptExtensionSaved" value='${requestScope["ScriptExtensionSaved"]}'/>
 <c:set var="ScriptExtensionSaveError" value='${requestScope["ScriptExtensionSaveError"]}'/>
-<%@include file="Translater.jsp"%>
+<c:set var="ActiveElement" value='Adminhome'/>
+<c:set var="ScriptDeleted" value='${requestScope["ScriptDeleted"]}'/>
+<%@include file="Common.jsp"%>
 <!doctype html>
 <html>
 	<head>
@@ -29,10 +31,10 @@
 		<script src="js/bootstrap.min.js"></script>
 		<title>PrintDesk - Admin Install Script configuration Page</title>
 	</head>
-	<body>
-	<%@include file="Header.jsp"%>
+	<body class="container-fluid" style="min-width: ${MinWidth};">
+		<%@include file="Navbar.jsp"%>
 		<div class="row ml-4 mr-4 mt-3 mb-4">
-			<div class="col-3 p-4 border-right">
+			<div class="col-3 text-truncate p-4 border-right">
 				<p class="mb-2"><em>${Home}</em></p>
 				<p class="mb-1"><img class="size-16" src="img/admin/home.png" alt="Home page"/><a class="ml-2 text-body" href="${context}/adminhome">${Homepage}</a></p>
 				<p class="mb-2 pt-3"><em>${Details}</em></p>
@@ -47,43 +49,75 @@
 				<p><img class="size-16" src="img/admin/other.png" alt="Other settings"/><a class="ml-2 text-body" href="${context}/adminother">${Othersettings}</a></p>
 			</div>
 			<div class="col-9 pl-4">
-				<div class="d-flex align-items-center mb-3 border-bottom">
-					<img class="size-64 mr-2" src="img/admin/installscript.png" alt="Install Script"/>
+				<div class="d-flex align-items-center border-bottom">
+					<img class="size-64 mr-2" src="img/admin/printers.png" alt="Printers"/>
 					<h1 class="display-5 mr-4 mt-2 mb-4">${Installscript}</h1>
 				</div>
-				<p><em>${MakechangestoInstallScriptandpressSavebuttonVariableslistedbelowwillbechangedtothespecifiedvalue}</em></p>
-				<ul class="mb-5">
-					<li class="mb-1"><kbd>%PRINTER_NAME%</kbd> - <em>${Printername}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_DESCRIPTION%</kbd> - <em>${Printerdescription}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_SHARE_NAME%</kbd> - <em>${Printersharednameonserver}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_ID%</kbd> - <em>${PrinterIDinthesystem}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_BRANCH_ID%</kbd> - <em>${PrinterbranchIDinthesystem}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_IP%</kbd> - <em>${PrinterIPaddress}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_VENDOR%</kbd> - <em>${Printervendor}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_TYPE%</kbd> - <em>${Printertype}</em></li>
-					<li class="mb-1"><kbd>%PRINTER_CUSTOM_FIELD1%</kbd> - <em>${Printercustomfield1}</em></li>
-				</ul>
-				<c:if test = "${InstallScriptSaved == true}">
-					<div class="alert alert-success mt-3" role="alert">${Installscriptsaved}</div>
-				</c:if>
-				<c:if test = "${InstallScriptSaveError == true}">
-					<div class="alert alert-danger mt-3" role="alert">${InstallscriptnotsavedError}</div>
-				</c:if>
-				<c:if test = "${ScriptExtensionSaved == true}">
-					<div class="alert alert-success mt-3" role="alert">${Scriptextensionsaved}</div>
-				</c:if>
-				<c:if test = "${ScriptExtensionSaveError == true}">
-					<div class="alert alert-danger mt-3" role="alert">${ScriptextensionnotsavedError}</div>
-				</c:if>
-				<div class="mb-3">
-					<form method="post" action="admininstallscript">
-						<label for="inputExtensionInput">${Scriptextension}</label>
-						<input class="form-control mb-4" id="inputExtensionInput" type="text" name="adminscriptextension" value="${scriptextensionp}">
-						<label for="adminscriptInput">${Script}</label>
-						<textarea class="form-control" name="adminscript" id="adminscriptInput" class="w-100" rows="15" autocomplete="off" autocapitalize="off" spellcheck="false">${installscriptp}</textarea>
-						<button name="savescript_button" type="submit" class="btn btn-outline-primary mt-3">${Save}</button>
-					</form>
+				<div class="d-flex align-items-center mb-3 bg-light">
+					<a class="btn btn-outline-primary m-2" href="${context}/admininstallscriptcreate" role="button">${Createscript}</a>
 				</div>
+<%--				<c:if test = "${ErrorPrinterIDNotNumber == true}">--%>
+<%--					<div class="alert alert-danger mt-3 mb-3" role="alert">${PrinterIDmustbenumber}</div>--%>
+<%--				</c:if>--%>
+				<c:if test = "${ScriptDeleted == true}">
+					<div class="alert alert-success mt-3 mb-3" role="alert">${Scriptdeleted}</div>
+				</c:if>
+<%--				<c:if test = "${ErrorPrinterDelete == true}">--%>
+<%--					<div class="alert alert-danger mt-3 mb-3" role="alert">${Printerdeletionerror}</div>--%>
+<%--				</c:if>--%>
+<%--				<c:if test = "${NewPrinterCreateSuccess == true}">--%>
+<%--					<div class="alert alert-success mt-3 mb-3" role="alert">${Printercreated}</div>--%>
+<%--				</c:if>--%>
+<%--				<c:if test = "${ErrorNewPrinterCreate == true}">--%>
+<%--					<div class="alert alert-danger mt-3 mb-3" role="alert">${Printercreationerror}</div>--%>
+<%--				</c:if>--%>
+<%--				<c:if test = "${ErrorPrinterNotNumber == true}">--%>
+<%--					<div class="alert alert-danger mt-3 mb-3" role="alert">${PrinterIDisnotnumber}</div>--%>
+<%--				</c:if>--%>
+<%--				<c:if test = "${ErrorPrinterNotFound == true}">--%>
+<%--					<div class="alert alert-danger mt-3 mb-3" role="alert">${Printernotfound}</div>--%>
+<%--				</c:if>--%>
+				<table class="table">
+					<thead>
+					<tr class="d-flex">
+						<th class="col-1"></th>
+						<th class="col-1"></th>
+						<th class="col-3">${Name}</th>
+						<th class="col-3 text-truncate">${Scriptextension}</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:choose>
+						<c:when test = "${scripts.size() > 0}">
+							<c:forEach begin="0" items="${scripts}" var="script">
+								<tr class="d-flex">
+									<td class="col-1" scope="row">
+										<form method="post" action="admininstallscript">
+											<button type="submit" name="button_deletescript" class="btn btn-link m-0 p-0" title="Delete script"><span class="oi oi-x"></span></button>
+											<input class="hidden" name="deletescriptid" value="${script.getId()}">
+										</form>
+									</td>
+									<td class="col-1">
+										<a href="${context}/admininstallscriptedit?scriptid=${script.getId()}">
+											<button class="btn btn-link m-0 p-0" title="Edit script"><span class="oi oi-wrench"></span></button>
+										</a>
+									</td>
+									<td class="col-3 table-overflow">${script.getName()}</td>
+									<td class="col-3 table-overflow">${script.getExtension()}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr class="d-flex">
+								<td class="col-1" scope="row"></td>
+								<td class="col-1"></td>
+								<td class="col-3">(${Empty})</td>
+								<td class="col-3"></td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</body>

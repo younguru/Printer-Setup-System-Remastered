@@ -1,10 +1,12 @@
 package org.PrinterSetupSystem.dao;
 
+import org.PrinterSetupSystem.beans.Script;
+import org.PrinterSetupSystem.conn.ConnectionUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import org.PrinterSetupSystem.conn.ConnectionUtils;
+import java.util.ArrayList;
 
 /** Represents Admin Administrator Install Script Page DAO
 @author Akshin A. Mustafayev
@@ -12,28 +14,26 @@ import org.PrinterSetupSystem.conn.ConnectionUtils;
 */
 public class AdminInstallScriptDao 
 {
-	/**
-	Function gets Install Script from database.
-	@return Returns Install Script string
-	*/
-	public static String GetInstallScript()
+	public static ArrayList<Script> GetInstallScripts()
     {
-		String installscript = "No script found";
-		
-		
+		ArrayList<Script> scripts = new ArrayList<>();
+
 		try
         {
         	Connection conn = ConnectionUtils.getConnection();
-            PreparedStatement pstmt = null;
-            
-            pstmt = conn.prepareStatement("select value from systemsettings where parameter='installscript'");
+            PreparedStatement pstmt = conn.prepareStatement("select * from installscripts");
             ResultSet rs = pstmt.executeQuery();
-            
+
             while (rs.next())
             {
-            	installscript = rs.getString("value");
+                Script script = new Script();
+            	script.setId(rs.getInt("id"));
+                script.setName(rs.getString("name"));
+                script.setExtension(rs.getString("extension"));
+                script.setValue(rs.getString("value"));
+                scripts.add(script);
             }
-            
+
             rs.close();
             pstmt.close();
             conn.close();
@@ -42,98 +42,133 @@ public class AdminInstallScriptDao
         {
             e.printStackTrace();
         }
-		
-		return installscript;
+
+		return scripts;
     }
-	
-	/**
+
+    public static Script GetInstallScript(Integer scriptid)
+    {
+        Script script = null;
+
+        try
+        {
+            Connection conn = ConnectionUtils.getConnection();
+            PreparedStatement pstmt = null;
+
+            pstmt = conn.prepareStatement("select * from installscripts where id=?");
+            pstmt.setInt(1, scriptid);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                script = new Script();
+                script.setId(rs.getInt("id"));
+                script.setName(rs.getString("name"));
+                script.setExtension(rs.getString("extension"));
+                script.setValue(rs.getString("value"));
+            }
+
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            script = null;
+            e.printStackTrace();
+        }
+
+        return script;
+    }
+
+    /**
 	Function updates Install Script in database.
-	@param	installscript	Script text
+	@param installscript Script text
 	@return Returns true if successful
 	*/
-	public static Boolean SetInstallScript(String installscript)
+    public static Boolean SaveScript(Script script)
     {
-		Boolean result = true;
-		try
+        Boolean result = true;
+
+        try
         {
-        	Connection conn = ConnectionUtils.getConnection();
+            Connection conn = ConnectionUtils.getConnection();
             PreparedStatement pstmt = null;
-            
-            pstmt = conn.prepareStatement("update systemsettings set value = ? where parameter='installscript'");
-            pstmt.setString(1, installscript);
+
+            pstmt = conn.prepareStatement("update installscripts set name = ?, extension = ?, value = ? where id=?");
+            pstmt.setString(1, script.getName());
+            pstmt.setString(2, script.getExtension());
+            pstmt.setString(3, script.getValue());
+            pstmt.setInt(4, script.getId());
+
             pstmt.executeUpdate();
 
             pstmt.close();
             conn.close();
         }
-		catch(Exception e)
+        catch(Exception e)
         {
-			result = false;
+            result = false;
             e.printStackTrace();
         }
-		
-		return result;
+
+        return result;
     }
 	
 	/**
 	Function gets Install Script Extension.
 	@return Returns Script Extension string
 	*/
-	public static String GetScriptExtension()
+
+    public static Boolean DeleteScript(Integer scriptid)
     {
-		String scriptextension = "No script extension found";
-		
-		try
+        Boolean result = true;
+
+        try
         {
-        	Connection conn = ConnectionUtils.getConnection();
+            Connection conn = ConnectionUtils.getConnection();
             PreparedStatement pstmt = null;
-            
-            pstmt = conn.prepareStatement("select value from systemsettings where parameter='installscriptextension'");
-            ResultSet rs = pstmt.executeQuery();
-            
-            while (rs.next())
-            {
-            	scriptextension = rs.getString("value");
-            }
-            
-            rs.close();
-            pstmt.close();
-            conn.close();
-        }
-		catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-		
-		return scriptextension;
-    }
-	
-	/**
-	Function updates Install Script Extension in database.
-	@param	scriptextension	Script Extension text
-	@return Returns true if successful
-	*/
-	public static Boolean SetScriptExtension(String scriptextension)
-    {
-		Boolean result = true;
-		try
-        {
-        	Connection conn = ConnectionUtils.getConnection();
-            PreparedStatement pstmt = null;
-            
-            pstmt = conn.prepareStatement("update systemsettings set value = ? where parameter='installscriptextension'");
-            pstmt.setString(1, scriptextension);
+
+            pstmt = conn.prepareStatement("delete from installscripts where id=?");
+            pstmt.setInt(1, scriptid);
             pstmt.executeUpdate();
 
             pstmt.close();
             conn.close();
         }
-		catch(Exception e)
+        catch(Exception e)
         {
-			result = false;
+            result = false;
             e.printStackTrace();
         }
-		
-		return result;
+
+        return result;
     }
+
+    public static Boolean CreateScript(Script script)
+    {
+        Boolean result = true;
+
+        try
+        {
+            Connection conn = ConnectionUtils.getConnection();
+            PreparedStatement pstmt = null;
+            pstmt = conn.prepareStatement("insert into installscripts (name, extension, value) values (?, ?, ?)");
+
+            pstmt.setString(1, script.getName());
+            pstmt.setString(2, script.getExtension());
+            pstmt.setString(3, script.getValue());
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            result = false;
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }

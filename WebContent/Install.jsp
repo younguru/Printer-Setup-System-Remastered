@@ -7,7 +7,7 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <c:set var="SuccessInstallSystem" value='${requestScope["SuccessInstallSystem"]}'/>
 <c:set var="ErrorInstallSystem" value='${requestScope["ErrorInstallSystem"]}'/>
-<%@include file="Translater.jsp"%>
+<%@include file="Common.jsp"%>
 <!doctype html>
 <html>
 	<head>
@@ -26,7 +26,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<title>PrintDesk - Installation</title>
 	</head>
-	<body>
+	<body class="container-fluid" style="min-width: ${MinWidth};">
 		<div class="card ml-4 mr-4 mt-3 mb-4">
 			<div class="card-header">
 				<div class="d-flex align-items-center">

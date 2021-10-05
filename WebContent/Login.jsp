@@ -6,7 +6,7 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ErrorWrongLoginOrPassword" value='${requestScope["ErrorWrongLoginOrPassword"]}'/>
-<%@include file="Translater.jsp" %>
+<%@include file="Common.jsp" %>
 <!doctype html>
 <html>
 	<head>

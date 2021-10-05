@@ -8,7 +8,7 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <c:set var="ErrorEditAdminSave" value='${requestScope["ErrorEditAdminSave"]}'/>
 <c:set var="AdminSaved" value='${requestScope["AdminSaved"]}'/>
-<%@include file="Translater.jsp"%>
+<%@include file="Common.jsp"%>
 <!doctype html>
 <html>
 	<head>
@@ -27,10 +27,10 @@
 		<script src="js/bootstrap.min.js"></script>
 		<title>PrintDesk - Admin Edit Administrator</title>
 	</head>
-	<body>
-	<%@include file="Header.jsp"%>
+	<body class="container-fluid" style="min-width: ${MinWidth};">
+		<%@include file="Navbar.jsp"%>
 		<div class="row ml-4 mr-4 mt-3 mb-4">
-			<div class="col-3 p-4 border-right">
+			<div class="col-3 text-truncate p-4 border-right">
 				<p class="mb-2"><em>${Home}</em></p>
 				<p class="mb-1"><img class="size-16" src="img/admin/home.png" alt="Home page"/><a class="ml-2 text-body" href="${context}/adminhome">${Homepage}</a></p>
 				<p class="mb-2 pt-3"><em>${Details}</em></p>

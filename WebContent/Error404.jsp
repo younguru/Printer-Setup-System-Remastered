@@ -5,7 +5,7 @@
  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<%@include file="Translater.jsp" %>
+<%@include file="Common.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -25,7 +25,7 @@
 		<script src="js/printersetupsystem.js"></script>
 		<title>PrintDesk - Error 404</title>
 	</head>
-	<body>
+	<body class="container-fluid" style="min-width: ${MinWidth};">
 		<nav class="navbar navbar-expand navbar-light bg-light">
 			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

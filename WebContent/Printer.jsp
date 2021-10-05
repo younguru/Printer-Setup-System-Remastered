@@ -6,7 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <c:set var="ErrorPrinterNotFound" value='${requestScope["ErrorPrinterNotFound"]}'/>
-<%@include file="Translater.jsp" %>
+<c:set var="ActiveElement" value='Home'/>
+<%@include file="Common.jsp" %>
 <!doctype html>
 <html>
 	<head>
@@ -27,43 +28,8 @@
 		<script src="js/printer.js"></script>
 		<title>Printer Setup System - Branch Printer</title>
 	</head>
-	<body>
-		<nav class="navbar navbar-expand navbar-light bg-light">
-			<a class="navbar-brand ml-4" href="${context}/home"><img src="img/logo.png" alt="Logo" class="printersetupsystem-logo"> ${PrintDesk}</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active">
-						<a class="nav-link" href="${context}/home">${Home}<span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${context}/search">${Search}<span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${context}/help">${Help}<span class="sr-only">(current)</span></a>
-					</li>
-					<c:if test = "${isAdminEntered == true}">
-						<li class="nav-item">
-							<a class="nav-link" href="${context}/adminhome">${Admin}</a>
-						</li>
-					</c:if>
-				</ul>
-			</div>
-			<c:if test = "${isAdminEntered == true}">
-				<ul class="navbar-nav ">
-				    <li class="nav-item dropdown">
-				        <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("fullname")%> </a>
-				        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-				        	<a class="dropdown-item" href="${context}/usersettings">${Preferences}</a>
-				        	<div class="dropdown-divider"></div>
-				        	<a class="dropdown-item" href="Logout.jsp">${Logout}</a>
-						</div>
-					</li>
-				</ul>
-			</c:if>
-		</nav>
+	<body class="container-fluid" style="min-width: ${MinWidth};">
+		<%@include file="Navbar.jsp"%>
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb ml-4 mr-4 mt-3">
 				<li class="breadcrumb-item"><a href="${context}/home">${Home}</a></li>

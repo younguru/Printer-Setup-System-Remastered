@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="MinWidth" value='600px'/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <fmt:setLocale value="ru"/>
 <fmt:setBundle basename="labels"/>
@@ -85,7 +86,8 @@
 <fmt:message key="Branchsaveerror" var="Branchsaveerror"/>
 <fmt:message key="Branchsaved" var="Branchsaved"/>
 <fmt:message key="Deleteimage" var="Deleteimage"/>
-<fmt:message key="MakechangestoInstallScriptandpressSavebuttonVariableslistedbelowwillbechangedtothespecifiedvalue" var="MakechangestoInstallScriptandpressSavebuttonVariableslistedbelowwillbechangedtothespecifiedvalue"/>
+<fmt:message key="MakechangestoInstallScriptandpressSavebuttonVariableslistedbelowwillbechangedtothespecifiedvalue"
+             var="MakechangestoInstallScriptandpressSavebuttonVariableslistedbelowwillbechangedtothespecifiedvalue"/>
 <fmt:message key="Printerdescription" var="Printerdescription"/>
 <fmt:message key="Printersharednameonserver" var="Printersharednameonserver"/>
 <fmt:message key="PrinterIDinthesystem" var="PrinterIDinthesystem"/>
@@ -126,12 +128,15 @@
 <fmt:message key="None" var="None"/>
 <fmt:message key="IPaddress" var="IPaddress"/>
 <fmt:message key="InputIPaddressoftheprinter" var="InputIPaddressoftheprinter"/>
-<fmt:message key="InputvendoroftheprinterForexampleHPXeroxCanonandetc" var="InputvendoroftheprinterForexampleHPXeroxCanonandetc"/>
+<fmt:message key="InputvendoroftheprinterForexampleHPXeroxCanonandetc"
+             var="InputvendoroftheprinterForexampleHPXeroxCanonandetc"/>
 <fmt:message key="Serversharedname" var="Serversharedname"/>
-<fmt:message key="InputserversharednameoftheprinterForexampleserver01Printer1" var="InputserversharednameoftheprinterForexampleserver01Printer1"/>
+<fmt:message key="InputserversharednameoftheprinterForexampleserver01Printer1"
+             var="InputserversharednameoftheprinterForexampleserver01Printer1"/>
 <fmt:message key="Inputlocationoftheprinter" var="Inputlocationoftheprinter"/>
 <fmt:message key="Customfield1" var="Customfield1"/>
-<fmt:message key="Inputcustomfield1valueThisparameterisnotvisibleanywhereandcouldbeusedonlyforscriptingpurposes" var="Inputcustomfield1valueThisparameterisnotvisibleanywhereandcouldbeusedonlyforscriptingpurposes"/>
+<fmt:message key="Inputcustomfield1valueThisparameterisnotvisibleanywhereandcouldbeusedonlyforscriptingpurposes"
+             var="Inputcustomfield1valueThisparameterisnotvisibleanywhereandcouldbeusedonlyforscriptingpurposes"/>
 <fmt:message key="Editprinter" var="Editprinter"/>
 <fmt:message key="Edit" var="Edit"/>
 <fmt:message key="Printersaveerror" var="Printersaveerror"/>
@@ -143,7 +148,8 @@
 <fmt:message key="Errorprintertypedelete" var="Errorprintertypedelete"/>
 <fmt:message key="EmptyprinterIDPleaseenteravalidprinterid" var="EmptyprinterIDPleaseenteravalidprinterid"/>
 <fmt:message key="Branchnumbermustbeentered" var="Branchnumbermustbeentered"/>
-<fmt:message key="printerdownloadisstartingSavefiletoyourdesktopandthenrunittoinstallprinter" var="printerdownloadisstartingSavefiletoyourdesktopandthenrunittoinstallprinter"/>
+<fmt:message key="printerdownloadisstartingSavefiletoyourdesktopandthenrunittoinstallprinter"
+             var="printerdownloadisstartingSavefiletoyourdesktopandthenrunittoinstallprinter"/>
 <fmt:message key="Error404" var="Error404"/>
 <fmt:message key="SorryRequestedpagecouldnotbefound" var="SorryRequestedpagecouldnotbefound"/>
 <fmt:message key="EmptybranchIDPleaseenteravalidbranchid" var="EmptybranchIDPleaseenteravalidbranchid"/>
@@ -166,3 +172,7 @@
 <fmt:message key="Confirmnewpassword" var="Confirmnewpassword"/>
 <fmt:message key="Inputnewpasswordagain" var="Inputnewpasswordagain"/>
 <fmt:message key="Change" var="Change"/>
+<fmt:message key="Scriptname" var="Scriptname"/>
+<fmt:message key="Createscript" var="Createscript"/>
+<fmt:message key="Scriptdeleted" var="Scriptdeleted"/>
+<fmt:message key="Editscript" var="Editscript"/>
